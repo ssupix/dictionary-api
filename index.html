@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary App</title>
+
+    <!-- tailwindcss -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+<body class="h-screen bg-gray-100 flex flex-col items-center p-10 pt-16">
+    <h1 class="text-2xl font-bold mb-5">dictionary.</h1>
+    <div class="w-full max-w-md">
+        <div class="flex gap-4 mb-2 w-full">
+            <input id="search" class="w-full p-2 px-4 border-2 border-gray-300 bg-gray-100 rounded-[10px]" type="text" placeholder="Search a word...">
+            <button id="search-btn" class="w-full max-w-fit px-10 py-4 bg-[#E7FF6E] border-2 border-[#BFE500] text-black text-md rounded-full uppercase hover:bg-[#BFE500]">search</button>
+        </div>
+        <p id="limit-warning" class=" text-red-500 hidden mt-2 p-2 bg-red-50 rounded">
+            You can only save up to 5 words. Please remove a word before adding a new one.
+        </p>
+    </div>
+
+    <!-- definition container -->
+    <div id="definition-container" class="mt-5 w-full max-w-md bg-white p-4 shadow rounded-[10px] hidden"></div>
+
+
+    <!-- saved words will be displayed in this ul -->
+    <div class="mt-5 w-full max-w-md">
+        <div class="flex justify-between items-center mb-2 px-2">
+            <h2 class="text-xl font-bold">your saved words <span id="word-count" class=" text-sm font-normal text-gray-500">0/5</span></h2>
+            <button id="clear-all-btn" class="text-sm text-red-500 hidden hover:underline">clear all</button>
+        </div>
+        <ul id="saved-words" class="w-full bg-white p-4 shadow rounded-[10px]"></ul>
+    </div>
+
+    <!-- loading js -->
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
