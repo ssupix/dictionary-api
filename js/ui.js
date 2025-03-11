@@ -15,6 +15,18 @@ const wordTypeColors = {
     idk: ['#E7E7E7', '#777777'],
 };
 
+// Function to update star in definition container
+function updateStarInDefinition(word, isSaved) {
+    const starButton = document.getElementById('star-button');
+    if (starButton && starButton.closest('#definition-container')) {
+        // Check if current definition is for the same word
+        const definitionWord = document.querySelector('#definition-container h2');
+        if (definitionWord && definitionWord.textContent === word) {
+            starButton.innerHTML = isSaved ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>';
+        }
+    }
+}
+
 // Updates the UI to display the definition of a word
 export function updateDefinitionUI(data) {
     const container = document.getElementById('definition-container');
@@ -100,6 +112,9 @@ export function updateSavedWordsUI() {
     
     list.innerHTML = '';
     
+    // Always update the word count display
+    document.getElementById('word-count').textContent = `${savedWords.length}/5`;
+    
     // Show/hide the clear button based on whether there are saved words
     if (savedWords.length === 0) {
         list.innerHTML = '<p class="text-gray-500 p-2">No saved words yet.</p>';
@@ -129,12 +144,10 @@ export function updateSavedWordsUI() {
         // Make the star clickable to remove the word from saved words
         li.querySelector('.remove-word').addEventListener('click', () => {
             removeWord(word);
+            updateStarInDefinition(word, false); // Update definition UI star
             updateSavedWordsUI();
         });
         
         list.appendChild(li);
     });
-    
-    // Update the word count display
-    document.getElementById('word-count').textContent = `${savedWords.length}/5`;
 }
